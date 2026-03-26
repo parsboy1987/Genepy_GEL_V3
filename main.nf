@@ -60,16 +60,16 @@ workflow {
 
         chrx = Channel.fromPath(shard_path_pattern, checkIfExists: true)
         .map { vcf_file->
-            def shard_num       = params.shard_number.toString()
+            def shard_num       = shard_number.toString()
             def subshard_number = vcf_file.parent.name.replace('subshard-', '')
             def chr_name        = shard_map["${shard_num}_${subshard_number}"]
             if( !chr_name ) {
-                throw new IllegalArgumentException("No chromosome mapping found for shard=${shard_num}, subshard=${subshard_num}")
+                throw new IllegalArgumentException("No chromosome mapping found for shard=${shard_num}, subshard=${subshard_number}")
             }
 
            // def gnomad_joint_vcf = "${params.gnomad_joint_dir}/${chr_name}.joint.vcf.gz"
             def gnomad_joint_vcf = "${params.gnomad_joint_dir}"
-            def vcf_n = "Shard_${shard_num}_Subshard_${subshard_num}"
+            def vcf_n = "Shard_${shard_num}_Subshard_${subshard_number}"
 
             tuple(shard_num, subshard_num, chr_name, vcf_file, file(gnomad_joint_vcf),file(params.annotations_cadd))
         }.view()
