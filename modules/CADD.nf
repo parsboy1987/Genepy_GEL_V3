@@ -15,7 +15,7 @@ process CADD_score {
   script:
     """
     echo "CADD"
-    REAL_PATH1=\$(readlink -f ${cadd_})
+    REAL_PATH1=\$(readlink -f ${annotations_cadd})
     ln -sf \$REAL_PATH1 /opt/CADD-scripts-CADD1.6/data/annotations/GRCh38_v1.6
     
     bcftools view -G ${vcfFile} -Ov  --threads $task.cpus -o p1.vcf
