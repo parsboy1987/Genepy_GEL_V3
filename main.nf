@@ -37,9 +37,10 @@ workflow {
          params.cadd     : ${params.annotations_cadd}
          """.stripIndent()
      
+        def shard_dir_name = file(params.shard_path).name
+        def shard_number = (shard_dir_name =~ /shard-(\d+)/)[0][1]
         
-        def shard_number = params.shard_number
-        def shard_path_pattern = "${params.vcf}/shard-${shard_number}/subshard-*/dragen.vcf.gz"
+        def shard_path_pattern = "${params.shard_path}/subshard-*/dragen.vcf.gz"
        println "START :)"
        println "Shard list: $shard_number"
 
@@ -69,7 +70,7 @@ workflow {
             }
 
             def gnomad_joint_vcf = "${params.gnomad_joint_dir}/${chr_name}.joint.vcf.gz"
-            def vcf_n = "Shard${shard_num}_Subshard_${subshard_num}"
+            def vcf_n = "Shard_${shard_num}_Subshard_${subshard_num}"
 
             tuple(shard_num, subshard_num, chr_name, vcf_file, file(gnomad_joint_vcf),file(params.annotations_cadd))
         }
