@@ -10,7 +10,7 @@ nextflow.enable.dsl=2
 
 // Check input path parameters to see if they exist
 def checkPathParamList = [ 
-    params.vcf
+    params.shard_path
 ]
  
 include { CADD_score } from "./modules/CADD"  
@@ -33,8 +33,7 @@ workflow {
                          UoS
                      Iman Nazari
           ===================================
-         Samples         : ${params.vcf}
-         params.cadd     : ${params.annotations_cadd}
+         Samples         : ${params.shard_path}
          """.stripIndent()
      
         def shard_dir_name = file(params.shard_path).name
