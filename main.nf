@@ -61,7 +61,7 @@ workflow {
         chrx = Channel.fromPath(shard_path_pattern, checkIfExists: true)
         .map { vcf_file->
             def shard_num       = params.shard_number.toString()
-            def subshard_number = f.parent.name.replace('subshard-', '')
+            def subshard_number = vcf_file.parent.name.replace('subshard-', '')
             def chr_name        = shard_map["${shard_num}_${subshard_number}"]
             if( !chr_name ) {
                 throw new IllegalArgumentException("No chromosome mapping found for shard=${shard_num}, subshard=${subshard_num}")
