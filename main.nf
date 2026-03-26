@@ -72,7 +72,7 @@ workflow {
             def vcf_n = "Shard_${shard_num}_Subshard_${subshard_num}"
 
             tuple(shard_num, subshard_num, chr_name, vcf_file, file(gnomad_joint_vcf),file(params.annotations_cadd))
-        }
+        }.view()
   //          tuple(shard_num, vcf_n, f, file(params.annotations_cadd))
   //      }
       CADD_score(chrx)
