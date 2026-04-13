@@ -69,7 +69,7 @@ workflow {
             }
 
             // def gnomad_joint_vcf = "${params.gnomad_joint_dir}/${chr_name}.joint.vcf.gz"
-            tuple(shard_num, subshard_number, chr_name, vcf_file, file(gnomad_joint_vcf),file(params.annotations_cadd))
+            tuple(shard_num, subshard_number, chr_name, vcf_file,file(params.annotations_cadd))
         }.view()
   //          tuple(shard_num, vcf_n, f, file(params.annotations_cadd))
   //      }
