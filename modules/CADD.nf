@@ -5,11 +5,11 @@ process CADD_score {
   maxForks 20
   input:
   tuple val(shard_num), val(subshard_num), val(chr_name), path(vcf_file), path(annotations_cadd)
-  // tuple val(shard_num), val(subshard_num), val (chr),  path(vcfFile), path(gnomad_joint_vcf), path(cadd_)
+  // tuple val(shard_num), val(subshard_num), val (chr),  path(vcf_File), path(gnomad_joint_vcf), path(cadd_)
       
   //val cadd_param = params.cadd_
   output:
-  tuple val(shard_num), path("p1.vcf"), path("wes_${subshard_num}.tsv.gz"), path("wes_${subshard_num}.tsv.gz.tbi"), val(subshard_num), path(vcfFile), emit: pre_proc_1
+  tuple val(shard_num), path("p1.vcf"), path("wes_${subshard_num}.tsv.gz"), path("wes_${subshard_num}.tsv.gz.tbi"), val(subshard_num), path(vcf_File), emit: pre_proc_1
   path("${subshard_num}.p11.vcf")
   // path("f3b.vcf")
   script:
