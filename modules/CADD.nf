@@ -4,7 +4,7 @@ process CADD_score {
   publishDir "${params.outDir}/${shard_num}/${subshard_num}", mode: "copy", overwrite: true
   maxForks 20
   input:
-  tuple val(shard_num), val(subshard_num), val(chr_name), path(vcf_file), path(annotations_cadd)
+  tuple val(shard_num), val(subshard_num), val(chr_name), path(vcf_File), path(annotations_cadd)
   // tuple val(shard_num), val(subshard_num), val (chr),  path(vcf_File), path(gnomad_joint_vcf), path(cadd_)
       
   //val cadd_param = params.cadd_
