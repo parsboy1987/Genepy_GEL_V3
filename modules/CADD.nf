@@ -18,7 +18,7 @@ process CADD_score {
     REAL_PATH1=\$(readlink -f ${annotations_cadd})
     ln -sf \$REAL_PATH1 /opt/CADD-scripts-CADD1.6/data/annotations/GRCh38_v1.6
     
-    bcftools view -G ${vcf_file} -Ov  --threads $task.cpus -o p1.vcf
+    bcftools view -G ${vcf_File} -Ov  --threads $task.cpus -o p1.vcf
     st=\$(awk '\$0 !~ /^#/ {print NR; exit}' p1.vcf)
     ## awk -F"\t" '\$1 ~ /^#/ || length(\$4)>1 || length(\$5)>1' p1.vcf | sed "\${st},\\\$s/chr//g" > ${subshard_num}.p11.vcf
 
